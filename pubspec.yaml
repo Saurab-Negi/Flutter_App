@@ -19,6 +19,7 @@ dependencies:
   flutter_native_splash: ^2.4.7
   lottie: ^3.3.2
   smooth_page_indicator: ^1.2.1
+  iconsax: ^0.0.8
 
 #STATE_MANAGEMENT
   get: ^4.7.3
