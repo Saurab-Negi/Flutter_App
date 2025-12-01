@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:test_app/features/authentication/controllers/onboarding/onboarding_controller.dart';
+import 'package:test_app/features/authentication/screens/onboarding/widgets/onboarding_dot_navigation.dart';
+import 'package:test_app/features/authentication/screens/onboarding/widgets/onboarding_next.dart';
 import 'package:test_app/features/authentication/screens/onboarding/widgets/onboarding_page.dart';
+import 'package:test_app/features/authentication/screens/onboarding/widgets/onboarding_skip.dart';
 import 'package:test_app/utils/constants/images.dart';
+import 'package:test_app/utils/constants/sizes.dart';
 import 'package:test_app/utils/constants/texts.dart';
 
 class OnboardingScreen extends StatelessWidget {
@@ -8,18 +14,33 @@ class OnboardingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(OnBoardingController());
     return Scaffold(
-      body: Stack(
-        children: [
-          // Scrollable page
-          PageView(
-            children: [
-              OnBoardingPage(animation: UImages.onboarding1Animation, title: UTexts.onBoardingTitle1, subtitle: UTexts.onBoardingSubTitle1),
-              OnBoardingPage(animation: UImages.onboarding2Animation, title: UTexts.onBoardingTitle2, subtitle: UTexts.onBoardingSubTitle2),
-              OnBoardingPage(animation: UImages.onboarding3Animation, title: UTexts.onBoardingTitle3, subtitle: UTexts.onBoardingSubTitle3)
-            ],
-          )
-        ],
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: USizes.defaultSpace),
+        child: Stack(
+          children: [
+            // Scrollable page
+            PageView(
+              controller: controller.pageController,
+              onPageChanged: controller.updatePageIndicator,
+              children: [
+                OnBoardingPage(animation: UImages.onboarding1Animation, title: UTexts.onBoardingTitle1, subtitle: UTexts.onBoardingSubTitle1),
+                OnBoardingPage(animation: UImages.onboarding2Animation, title: UTexts.onBoardingTitle2, subtitle: UTexts.onBoardingSubTitle2),
+                OnBoardingPage(animation: UImages.onboarding3Animation, title: UTexts.onBoardingTitle3, subtitle: UTexts.onBoardingSubTitle3)
+              ],
+            ),
+
+            // Indicator
+            OnBoardingDotNavigation(),
+
+            // Bottom button
+            OnboardingNextButton(),
+
+            // Skip button
+            OnboardingSkipButton()
+          ],
+        ),
       )
     );
   }

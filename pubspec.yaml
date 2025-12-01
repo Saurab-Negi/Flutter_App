@@ -20,6 +20,9 @@ dependencies:
   lottie: ^3.3.2
   smooth_page_indicator: ^1.2.1
 
+#STATE_MANAGEMENT
+  get: ^4.7.3
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
