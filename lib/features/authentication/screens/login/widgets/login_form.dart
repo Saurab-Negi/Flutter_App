@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:test_app/common/widgets/button/elevated_button.dart';
+import 'package:test_app/features/authentication/screens/forgot_password/forget_password.dart';
+import 'package:test_app/features/authentication/screens/signup/signup.dart';
+import 'package:test_app/navigation_menu.dart';
 import 'package:test_app/utils/constants/sizes.dart';
 import 'package:test_app/utils/constants/texts.dart';
 
@@ -23,7 +27,7 @@ class ULoginForm extends StatelessWidget {
 
         TextFormField(
           decoration: InputDecoration(
-            prefixIcon: Icon(Iconsax.direct_right),
+            prefixIcon: Icon(Iconsax.password_check),
             labelText: UTexts.password,
             suffixIcon: Icon(Iconsax.eye),
           ),
@@ -41,17 +45,23 @@ class ULoginForm extends StatelessWidget {
               ],
             ),
 
-            TextButton(onPressed: () {}, child: Text(UTexts.forgetPassword)),
+            TextButton(onPressed: () => Get.to(() => ForgetPasswordScreen()), child: Text(UTexts.forgetPassword)),
           ],
         ),
 
         SizedBox(height: USizes.spaceBtwSections),
 
-        UElevatedButton(onPressed: () {}, child: Text(UTexts.signIn)),
+        UElevatedButton(onPressed: () => Get.to(() => NavigationMenu()), child: Text(UTexts.signIn)),
 
         SizedBox(height: USizes.spaceBtwItems / 2),
 
-        UElevatedButton(onPressed: () {}, child: Text(UTexts.createAccount)),
+        SizedBox(
+          width: double.infinity,
+          child: OutlinedButton(
+            onPressed: () => Get.to(() => SignupScreen()),
+            child: Text(UTexts.createAccount),
+          ),
+        ),
       ],
     );
   }
