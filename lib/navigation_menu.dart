@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:test_app/features/authentication/screens/login/login.dart';
-import 'package:test_app/features/authentication/screens/signup/signup.dart';
+import 'package:test_app/features/shop/screens/home/home.dart';
 import 'package:test_app/utils/constants/colors.dart';
 import 'package:test_app/utils/helpers/helper_function.dart';
 
@@ -14,12 +13,14 @@ class NavigationMenu extends StatelessWidget {
     final controller = Get.put(NavigationController());
     bool dark = UHelperFunctions.isDarkMode(context);
     return Scaffold(
-      body: Obx(() =>  controller.screens[controller.selectedIndex.value]),
+      body: Obx(() => controller.screens[controller.selectedIndex.value]),
       bottomNavigationBar: Obx(
         () => NavigationBar(
           elevation: 0,
           backgroundColor: dark ? UColors.dark : UColors.light,
-          indicatorColor: dark ? UColors.white.withValues(alpha: 0.1) : UColors.black.withValues(alpha: 0.1),
+          indicatorColor: dark
+              ? UColors.white.withValues(alpha: 0.1)
+              : UColors.black.withValues(alpha: 0.1),
           selectedIndex: controller.selectedIndex.value,
           onDestinationSelected: (index) {
             controller.selectedIndex.value = index;
@@ -39,5 +40,5 @@ class NavigationMenu extends StatelessWidget {
 class NavigationController extends GetxController {
   RxInt selectedIndex = 0.obs;
 
-  var screens = <Widget>[LoginScreen(), SignupScreen()];
+  var screens = <Widget>[HomeScreen()];
 }
